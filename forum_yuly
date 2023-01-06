@@ -1,0 +1,97 @@
+-- --------------------------------------------------------
+-- Hôte :                        127.0.0.1
+-- Version du serveur:           5.7.24 - MySQL Community Server (GPL)
+-- SE du serveur:                Win64
+-- HeidiSQL Version:             10.2.0.5599
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+-- Listage de la structure de la base pour forum_yuly
+CREATE DATABASE IF NOT EXISTS `forum_yuly` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
+USE `forum_yuly`;
+
+-- Listage de la structure de la table forum_yuly. categorie
+CREATE TABLE IF NOT EXISTS `categorie` (
+  `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(100) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id_categorie`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Listage des données de la table forum_yuly.categorie : ~1 rows (environ)
+DELETE FROM `categorie`;
+/*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
+INSERT INTO `categorie` (`id_categorie`, `titre`) VALUES
+	(1, 'Général');
+/*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
+
+-- Listage de la structure de la table forum_yuly. message
+CREATE TABLE IF NOT EXISTS `message` (
+  `id_message` int(11) NOT NULL AUTO_INCREMENT,
+  `texte` text COLLATE utf8_bin NOT NULL,
+  `ecriture` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `sujet_id` int(11) NOT NULL,
+  `utilisateur_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_message`),
+  KEY `sujet_id` (`sujet_id`),
+  KEY `utilisateur_id` (`utilisateur_id`),
+  CONSTRAINT `FK_MESSAGE_ID_SUJET` FOREIGN KEY (`sujet_id`) REFERENCES `sujet` (`id_sujet`),
+  CONSTRAINT `FK_MESSAGE_ID_UTILISATEUR` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`id_utilisateur`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Listage des données de la table forum_yuly.message : ~0 rows (environ)
+DELETE FROM `message`;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+INSERT INTO `message` (`id_message`, `texte`, `ecriture`, `sujet_id`, `utilisateur_id`) VALUES
+	(1, 'Bienvenue au notre forum!\r\nSoyez gentil entre vous et bienveillant et vous ne serez pas banni :)', '2023-01-06 16:18:10', 1, 1);
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
+
+-- Listage de la structure de la table forum_yuly. sujet
+CREATE TABLE IF NOT EXISTS `sujet` (
+  `id_sujet` int(11) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ouvert` tinyint(1) DEFAULT '1',
+  `categorie_id` int(11) NOT NULL,
+  `utilisateur_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_sujet`),
+  KEY `categorie_id` (`categorie_id`),
+  KEY `utilisateur_id` (`utilisateur_id`),
+  CONSTRAINT `FK_SUJET_ID_CATEGORIE` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id_categorie`),
+  CONSTRAINT `FK_SUJET_ID_UTILISATEUR` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`id_utilisateur`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Listage des données de la table forum_yuly.sujet : ~0 rows (environ)
+DELETE FROM `sujet`;
+/*!40000 ALTER TABLE `sujet` DISABLE KEYS */;
+INSERT INTO `sujet` (`id_sujet`, `titre`, `creation`, `ouvert`, `categorie_id`, `utilisateur_id`) VALUES
+	(1, 'Pour les nouveaux', '2023-01-06 13:53:12', 1, 1, 1);
+/*!40000 ALTER TABLE `sujet` ENABLE KEYS */;
+
+-- Listage de la structure de la table forum_yuly. utilisateur
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) COLLATE utf8_bin NOT NULL,
+  `pseudonyme` varchar(25) COLLATE utf8_bin NOT NULL,
+  `password` varchar(255) COLLATE utf8_bin NOT NULL,
+  `inscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `role` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'visiteur',
+  `banni` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id_utilisateur`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Listage des données de la table forum_yuly.utilisateur : ~0 rows (environ)
+DELETE FROM `utilisateur`;
+/*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
+INSERT INTO `utilisateur` (`id_utilisateur`, `email`, `pseudonyme`, `password`, `inscription`, `role`, `banni`) VALUES
+	(1, 'yulik.bulatov@gmail.com', 'Julebulo', 'admin', '2023-01-06 00:00:00', 'admin', 0);
+/*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
