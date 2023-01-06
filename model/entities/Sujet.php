@@ -37,90 +37,102 @@
         }
 
         /**
-         * Get the value of title
+         * Get the value of titre
          */ 
-        public function getTitle()
+        public function getTitre()
         {
                 return $this->titre;
         }
 
         /**
-         * Set the value of title
+         * Set the value of titre
          *
          * @return  self
          */ 
-        public function setTitle($title)
+        public function setTitre($titre)
         {
-                $this->titre = $title;
+                $this->titre = $titre;
 
                 return $this;
         }
 
         /**
-         * Get the value of user
+         * Get the value of utilisateur
          */ 
-        public function getUser()
+        public function getUtilisateur()
         {
                 return $this->utilisateur;
         }
 
         /**
-         * Set the value of user
+         * Set the value of utilisateur
          *
          * @return  self
          */ 
-        public function setUser($user)
+        public function setUtilisateur($utilisateur)
         {
-                $this->utilisateur = $user;
+                $this->utilisateur = $utilisateur;
 
                 return $this;
         }
 
-        public function getCreationdate(){
-            $formattedDate = $this->creation->format("d/m/Y, H:i:s");
-            return $formattedDate;
-        }
-
-        public function setCreationdate($date){
-            $this->creation = new \DateTime($date);
-            return $this;
+        /**
+         * Get the value of creation
+         */ 
+        public function getCreation()
+        {
+                return $this->creation;
         }
 
         /**
-         * Get the value of open
+         * Set the value of creation
+         *
+         * @return  self
          */ 
-        public function getOpen()
+        public function setCreation($creation)
+        {
+                $this->creation = $creation;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of ouvert
+         */ 
+        public function getOuvert()
         {
                 return $this->ouvert;
         }
 
         /**
-         * Set the value of open
+         * Set the value of ouvert
          *
          * @return  self
          */ 
-        public function setOpen($open)
+        public function setOuvert($ouvert)
         {
-                $this->ouvert = $open;
+                $this->ouvert = $ouvert;
 
                 return $this;
         }
 
         /**
-         * Get the value of category
-         */
-        public function getCategory(){
-
+         * Get the value of categorie
+         */ 
+        public function getCategorie()
+        {
                 return $this->categorie;
         }
 
         /**
-         * Set the value of category
-         * 
-         * @return self
-         */
-        public function setCategory($category){
+         * Set the value of categorie
+         *
+         * @return  self
+         */ 
+        public function setCategorie($categorie)
+        {
+                $this->categorie = $categorie;
 
-                $this->categorie = $category;
+                return $this;
         }
     }

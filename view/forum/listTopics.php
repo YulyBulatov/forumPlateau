@@ -1,5 +1,6 @@
 <?php
-
+var_dump($result);
+var_dump($result["data"]['topics']);
 $topics = $result["data"]['topics'];
     
 ?>
@@ -10,7 +11,8 @@ $topics = $result["data"]['topics'];
 foreach($topics as $topic ){
 
     ?>
-    <p><?=$topic->getTitle()?></p>
+    <p><?=$topic->getTitre();
+    var_dump($topic)?></p>
     <?php
 }
 
