@@ -15,5 +15,20 @@
             parent::connect();
         }
 
+        public function sujetsDeCategorie($id){
+
+            $sql = "SELECT *
+                    FROM ".$this->tableName." 
+                    WHERE categorie_id = :id
+                    ORDER BY creation DESC";
+
+            return $this->getMultipleResults(
+                DAO::select($sql, ['id' => $id]),
+                $this->className
+            );
+
+
+        }
+
 
     }

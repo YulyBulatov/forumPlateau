@@ -1,6 +1,4 @@
 <?php
-var_dump($result);
-var_dump($result["data"]['topics']);
 $topics = $result["data"]['topics'];
     
 ?>
@@ -10,9 +8,10 @@ $topics = $result["data"]['topics'];
 <?php
 foreach($topics as $topic ){
 
+    $id_sujet = $topic->getId();
+
     ?>
-    <p><?=$topic->getTitre();
-    var_dump($topic)?></p>
+    <p><a href="index.php?ctrl=forum&action=messagesDuSujet&id=<?=$id_sujet?>"><?=$topic->getTitre()?></a></p>
     <?php
 }
 

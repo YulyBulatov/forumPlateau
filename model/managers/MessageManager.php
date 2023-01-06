@@ -15,4 +15,21 @@
             parent::connect();
         }
 
+        public function messagesDuSujet($id){
+
+            $sql = "SELECT id_message, texte, ecriture, sujet_id, titre, pseudonyme
+            FROM message
+            INNER JOIN sujet ON message.sujet_id = sujet.id_sujet
+            INNER JOIN utilisateur ON message.utilisateur_id = utilisateur.id_utilisateur 
+            WHERE sujet_id = :id
+            ORDER BY creation DESC";
+
+            return $this->getMultipleResults(
+                DAO::select($sql, ['id' => $id]),
+                $this->className
+            );
+
+
+        }
+
     }
