@@ -58,7 +58,9 @@
                 "view" => VIEW_DIR."forum/listMessages.php",
                 "data" => [
                     "messages" => $messageManager->messagesDuSujet($id)
-            ];
+                ]
+                ];
+
         }
 
     }
