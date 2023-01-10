@@ -2,6 +2,7 @@
 
 $categories = $result["data"]['categories'];
 
+
 ?>
 
 <h1>Liste de catégories</h1>
@@ -9,8 +10,9 @@ $categories = $result["data"]['categories'];
 <?php
 
 foreach($categories as $categorie){
+    var_dump($categorie);
     $id_categorie = $categorie->getId();
     ?>
-    <p><a href="index.php?ctrl=forum&action=sujetsDeCategories&id=<?=$id_categorie?>"><?= $categorie->getTitre()?></a></p>
+    <p><a href="index.php?ctrl=forum&action=sujetsDeCategorie&id=<?=$id_categorie?>"><?= $categorie->getTitre()?></a></p>
     <?php
 }

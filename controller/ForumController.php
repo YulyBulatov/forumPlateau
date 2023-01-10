@@ -45,7 +45,7 @@
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
-                    "sujets"=> $sujetManager->sujetsDeCategorie($id)
+                    "sujets" => $sujetManager->sujetsDeCategorie($id)
                 ]
                 ];
         }

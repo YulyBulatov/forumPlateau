@@ -1,5 +1,7 @@
 <?php
-$topics = $result["data"]['topics'];
+var_dump($result);
+$topics = $result["data"]['sujets'];
+
     
 ?>
 
@@ -7,6 +9,8 @@ $topics = $result["data"]['topics'];
 
 <?php
 foreach($topics as $topic ){
+
+    var_dump($topic);
 
     $id_sujet = $topic->getId();
 
