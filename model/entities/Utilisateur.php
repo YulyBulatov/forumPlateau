@@ -138,6 +138,17 @@
                 return $this;
         }
 
+        public function hasRole($role){
+
+                if($this->role === $role){
+
+                        return  true;
+                }
+                else{
+                        return false;
+                } 
+        }
+
         /**
          * Get the value of banni
          */ 
@@ -156,6 +167,11 @@
                 $this->banni = $banni;
 
                 return $this;
+        }
+
+        public function __toString()
+        {
+                return $this->pseudonyme;
         }
         }
  

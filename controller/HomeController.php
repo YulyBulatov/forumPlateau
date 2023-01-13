@@ -22,10 +22,10 @@
         
    
         public function users(){
-            $this->restrictTo("ROLE_USER");
+            $this->restrictTo("ROLE_ADMIN");
 
             $manager = new UtilisateurManager();
-            $users = $manager->findAll(['registerdate', 'DESC']);
+            $users = $manager->findAll(['inscription', 'DESC']);
 
             return [
                 "view" => VIEW_DIR."security/users.php",

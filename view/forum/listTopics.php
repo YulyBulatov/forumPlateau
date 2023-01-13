@@ -10,7 +10,6 @@ $topics = $result["data"]['sujets'];
 <?php
 foreach($topics as $topic ){
 
-    var_dump($topic);
 
     $id_sujet = $topic->getId();
 

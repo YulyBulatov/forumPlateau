@@ -78,26 +78,37 @@
 
                     $utilisateurManager = new UtilisateurManager;
 
-                    if($utilisateurManager->findOneByEmail($email)){
+                    $user = $utilisateurManager->findOneByEmail($email);
 
-                        $hash = $utilisateurManager->findOneByEmail($email)->getPassword();
+                    if($user){
+
+                        $hash = $user->getPassword();
 
                         if(password_verify($password, $hash)){
 
-                            
+                            if($user->getBanni() != 1){
 
                             $session = new Session;
+                         
+                            $session->setUser($user);
 
-
+                            return [
+                                "view" => VIEW_DIR."home.php"
+                            ];
+                            }
                         }
                     }
-
-
-
-
                 }
-
             }
+        }
+
+        public function logout(){
+
+            unset($_SESSION["user"]);
+
+            return [
+                "view" => VIEW_DIR."home.php"
+            ];
         }
 
 
