@@ -2,7 +2,7 @@
 
     <label>E-mail:
 
-            <input type="email" maxlength="100" pattern="^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,}$" name="email" required>
+            <input type="email" maxlength="100" pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$" name="email" required>
 
     </label>
 
@@ -13,7 +13,7 @@
 
     </label>
 
-    <input type="submit" name="submit" value="S'enregistrer">
+    <input type="submit" name="submit" value="Se connecter">
 
 
 </form>

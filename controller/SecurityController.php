@@ -60,5 +60,45 @@
             }
         }
 
-        
+        public function login(){
+
+            return [
+                "view" => VIEW_DIR."security/login.php"
+            ];
+        }
+
+        public function loginUser(){
+
+            if(isset($_POST['submit'])){
+
+                $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                if($email && $password){
+
+                    $utilisateurManager = new UtilisateurManager;
+
+                    if($utilisateurManager->findOneByEmail($email)){
+
+                        $hash = $utilisateurManager->findOneByEmail($email)->getPassword();
+
+                        if(password_verify($password, $hash)){
+
+                            
+
+                            $session = new Session;
+
+
+                        }
+                    }
+
+
+
+
+                }
+
+            }
+        }
+
+
     }
