@@ -1,6 +1,7 @@
 <?php
 $messages = $result["data"]['messages'];
 $titre = $messages->current()->getTitreSujet();
+$id_sujet = $messages->current()->getIdSujet();
 
     
 ?>
@@ -15,5 +16,14 @@ foreach($messages as $message ){
     <p><?=$message->getEcriture()?></p>
     </fieldset>
     <?php
-    
 }
+?>
+<form action="index.php?ctrl=forum&action=sendNewMessage" method="post">
+    <label>Votre message:
+        <textarea name="texte"></textarea>
+    </label> 
+     <input type="hidden" name="sujet_id" value="<?=$id_sujet?>">
+     <input type="hidden" name="utilisateur_id" value="<?=$_SESSION['user']->getId()?>">
+     <input type="submit" name="submit" value = "Envoyer">
+
+</form>

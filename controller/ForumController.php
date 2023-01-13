@@ -60,7 +60,51 @@
                     "messages" => $messageManager->messagesDuSujet($id)
                 ]
                 ];
+        }
 
+        public function sendNewMessage(){
+
+            if(isset($_POST['submit'])){
+
+                $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $sujet_id = filter_input(INPUT_POST, "sujet_id", FILTER_SANITIZE_NUMBER_INT);
+                $utilisateur_id = filter_input(INPUT_POST, "utilisateur_id", FILTER_SANITIZE_NUMBER_INT);
+
+                if($texte && $sujet_id && $utilisateur_id){
+
+                    $messageManager = new MessageManager;
+
+                    $data = ["texte" => $texte,
+                            "sujet_id" => $sujet_id,
+                            "utilisateur_id" => $utilisateur_id];
+                    
+                    $messageManager->add($data);
+                    
+                    return self::messagesDuSujet($sujet_id);
+                }
+            }
+        }
+
+        public function creerNouvelleCategorie(){
+
+            if(isset($_POST['submit'])){
+
+                $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                if($titre){
+
+                    $categorieManager = new CategorieManager;
+
+                    if(!$categorieManager->findOneByTitre($titre)){
+
+                        $data = ["titre" => $titre];
+
+                        $categorieManager->add($data);
+
+                        return self::listCategories();
+                    }
+                }
+            }
         }
 
     }

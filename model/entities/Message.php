@@ -129,6 +129,13 @@
                 return $titre;
         }
 
+        public function getIdSujet(){
+
+                $id = $this->sujet->getId();
+
+                return $id;
+        }
+
 
         }
  
