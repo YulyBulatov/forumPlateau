@@ -1,5 +1,5 @@
 <?php
-var_dump($result);
+
 $topics = $result["data"]['sujets'];
 
     

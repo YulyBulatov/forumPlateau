@@ -17,12 +17,12 @@
 
         public function messagesDuSujet($id){
 
-            $sql = "SELECT id_message, texte, ecriture, sujet_id, titre, pseudonyme
+            $sql = "SELECT id_message, texte, ecriture, message.utilisateur_id, sujet_id, pseudonyme
             FROM message
             INNER JOIN sujet ON message.sujet_id = sujet.id_sujet
             INNER JOIN utilisateur ON message.utilisateur_id = utilisateur.id_utilisateur 
             WHERE sujet_id = :id
-            ORDER BY creation DESC";
+            ORDER BY ecriture DESC";
 
             return $this->getMultipleResults(
                 DAO::select($sql, ['id' => $id]),

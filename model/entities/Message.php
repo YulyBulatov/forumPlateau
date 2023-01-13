@@ -114,5 +114,21 @@
 
                 return $this;
         }
+
+        public function getPseudonymeUtilisateur(){
+
+                $pseudonyme = $this->utilisateur->getPseudonyme();
+
+                return $pseudonyme;
+        }
+
+        public function getTitreSujet(){
+
+                $titre = $this->sujet->getTitre();
+
+                return $titre;
+        }
+
+
         }
  

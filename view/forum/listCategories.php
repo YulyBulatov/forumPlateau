@@ -10,7 +10,7 @@ $categories = $result["data"]['categories'];
 <?php
 
 foreach($categories as $categorie){
-    var_dump($categorie);
+    
     $id_categorie = $categorie->getId();
     ?>
     <p><a href="index.php?ctrl=forum&action=sujetsDeCategorie&id=<?=$id_categorie?>"><?= $categorie->getTitre()?></a></p>

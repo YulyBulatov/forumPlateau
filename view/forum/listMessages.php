@@ -1,19 +1,19 @@
 <?php
-var_dump($result);
-var_dump($result["data"]);
 $messages = $result["data"]['messages'];
+$titre = $messages->current()->getTitreSujet();
 
     
 ?>
 
-<h1><?=$message->getTitre()?></h1>
+<h1><?=$titre?></h1>
 
 <?php
 foreach($messages as $message ){
-
-    ?>
+    ?><fieldset>
     <p><?=$message->getTexte()?></p>
-    <p><?=$message->getPseudonyme()?></p>
+    <p><?=$message->getPseudonymeUtilisateur()?></p>
     <p><?=$message->getEcriture()?></p>
+    </fieldset>
     <?php
+    
 }
