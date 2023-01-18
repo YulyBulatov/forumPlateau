@@ -14,8 +14,14 @@ if($messages->current()->getIdSujet()){
 foreach($messages as $message ){
     ?><fieldset>
     <p><?=$message->getTexte()?></p>
-    <p><?=$message->getPseudonymeUtilisateur()?></p>
+    <p><a href="index.php?ctrl=security&action=viewProfile&id=<?=$message->getUtilisateur()->getId()?>"><?=$message->getPseudonymeUtilisateur()?></a></p>
     <p><?=$message->getEcriture()?></p>
+    <?php 
+     if(App\Session::isAdmin()){?>
+     <a href="index.php?ctrl=forum&action=supprimerMessage&id=<?=$message->getid()?>">Supprimer ce message</a>
+     <?php
+     }
+     ?>
     </fieldset>
     <?php
 }

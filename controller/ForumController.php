@@ -159,4 +159,17 @@
             }
         }
 
+        public function supprimerMessage($id){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $manager = new MessageManager();
+            $message = $manager->findOneById($id);
+            $id_sujet = $message->getSujet()->getId();
+            $manager->delete($id);
+
+            return self:: messagesDuSujet($id_sujet);
+
+
+        }
+
     }
