@@ -14,17 +14,40 @@ elseif($result["data"]['categorie']){
 
 <h1><?=$titre_categorie?></h1>
 
+<table>
+    <th>Titre du sujet</th>
+    <th>Auteur</th>
+    <th>Date de création</th>
+    <th>Action</th>
 <?php
   if(isset($topics)){
-    foreach($topics as $topic ){
+    foreach($topics as $topic){
 
 
         $id_sujet = $topic->getId();
 
-        ?>
-        <p><a href="index.php?ctrl=forum&action=messagesDuSujet&id=<?=$id_sujet?>"><?=$topic->getTitre()?></a></p>
+        ?><tr>
+            <td><a href="index.php?ctrl=forum&action=messagesDuSujet&id=<?=$id_sujet?>"><?=$topic->getTitre()?></a></td>
+            <td><a href="index.php?ctrl=security&action=viewProfile&id=<?=$topic->getUtilisateur()->getId()?>"><?=$topic->getUtilisateur()->getPseudonyme()?></a></td>
+            <td><?=$topic->getCreation()?></td>
+            <td><?php
+            if(App\Session::isAdmin() && $topic->getOuvert() == 1){?>
+
+              <a href="index.php?ctrl=forum&action=cloturerSujet&id=<?=$topic->getId()?>">Clôturer ce sujet</a>
+
+            <?php
+            }
+            elseif(App\Session::getUser()->getId()
+            == $topic->getUtilisateur()->getId() && $topic->getOuvert() == 1){?>
+
+              <a href="index.php?ctrl=forum&action=cloturerSujet&id=<?=$topic->getId()?>">Clôturer ce sujet</a>
+
+            <?php
+          }?> </td>
         <?php
 }}?>
+
+</table>
 
   <form action="index.php?ctrl=forum&action=addNouveauSujet" method="post" class="form-container">
     <h1>Nouveau sujet</h1>

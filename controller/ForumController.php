@@ -167,8 +167,19 @@
             $id_sujet = $message->getSujet()->getId();
             $manager->delete($id);
 
-            return self:: messagesDuSujet($id_sujet);
+            return self::messagesDuSujet($id_sujet);
 
+
+        }
+
+        public function cloturerSujet($id){
+
+            $manager = new SujetManager();
+            $sujet = $manager->findOneById($id);
+            $id_categorie = $sujet->getCategorie()->getId();
+            $manager->update("ouvert", 0, $id);
+
+            return self::sujetsDeCategorie($id_categorie);
 
         }
 

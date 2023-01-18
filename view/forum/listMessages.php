@@ -1,6 +1,7 @@
 <?php
 $messages = $result["data"]['messages'];
 $titre = $messages->current()->getTitreSujet();
+$ouvert = $messages->current()->getSujet()->getOuvert();
 
 if($messages->current()->getIdSujet()){
     $id_sujet = $messages->current()->getIdSujet();
@@ -24,8 +25,13 @@ foreach($messages as $message ){
      ?>
     </fieldset>
     <?php
-}
+};
+
+
+if( $ouvert == 1){
 ?>
+
+
 <form action="index.php?ctrl=forum&action=sendNewMessage" method="post">
     <label>Votre message:
         <textarea name="texte"></textarea>
@@ -35,3 +41,6 @@ foreach($messages as $message ){
      <input type="submit" name="submit" value = "Envoyer">
 
 </form>
+<?php
+}
+?>
