@@ -5,7 +5,8 @@
     use App\Session;
     use App\AbstractController;
     use App\ControllerInterface;
-    use Model\Managers\UtilisateurManager;
+use Model\Entities\Utilisateur;
+use Model\Managers\UtilisateurManager;
     use Model\Managers\SujetManager;
     use Model\Managers\MessageManager;
     
@@ -109,6 +110,37 @@
             return [
                 "view" => VIEW_DIR."home.php"
             ];
+        }
+
+        public function users(){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $manager = new UtilisateurManager();
+            $users = $manager->findAll(['inscription', 'DESC']);
+
+            return [
+                "view" => VIEW_DIR."security/users.php",
+                "data" => [
+                    "users" => $users
+                ]
+            ];
+        }
+
+        public function viewProfile($id){
+
+            $id_utilisateur = filter_input(INPUT_GET, $id, FILTER_SANITIZE_NUMBER_INT);
+
+            if($id_utilisateur){
+
+                $manager = new UtilisateurManager();
+                $profile = $manager->findOneById($id_utilisateur);
+
+                $manager = new MessageManager();
+                $nbre_messages = $manager->messagesDeUtilisateur($id_utilisateur);
+
+            }    
+
+
         }
 
 

@@ -23,7 +23,7 @@
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
-                            <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
+                            <a href="index.php?ctrl=security&action=users">Voir la liste des gens</a>
                           
                             <?php
                         }
@@ -34,7 +34,7 @@
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                            <a href="index.php?ctrl=security&action=viewProfile&id=<?=$_SESSION['user']->getId()?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                             <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                             <a href="index.php?ctrl=forum&action=listCategories">La liste des categories</a>
                             <?php

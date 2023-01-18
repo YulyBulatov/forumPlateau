@@ -28,7 +28,19 @@
                 DAO::select($sql, ['id' => $id]),
                 $this->className
             );
+        }
 
+        public function messagesDeUtilisateur($id){
+
+            $sql = "SELECT COUNT(id_message) AS nbre_messages
+            FROM message
+            WHERE utilisateur_id = :id
+            GROUP BY utilisateur_id";
+
+            return $this->getOneOrNullResult(
+            DAO::select($sql, ['id' => $id]),
+            $this->className
+            );
 
         }
 

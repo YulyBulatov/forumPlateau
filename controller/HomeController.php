@@ -21,19 +21,7 @@
             
         
    
-        public function users(){
-            $this->restrictTo("ROLE_ADMIN");
-
-            $manager = new UtilisateurManager();
-            $users = $manager->findAll(['inscription', 'DESC']);
-
-            return [
-                "view" => VIEW_DIR."security/users.php",
-                "data" => [
-                    "users" => $users
-                ]
-            ];
-        }
+        
 
         public function forumRules(){
             
