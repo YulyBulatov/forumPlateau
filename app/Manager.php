@@ -66,6 +66,21 @@
                 die();
             }
         }
+
+        public function update($collumn, $value, $id){
+            
+            $sql = "UPDATE ".$this->tableName." a
+                    SET ".$collumn." = '".$value."' 
+                    WHERE a.id_".$this->tableName." = $id";
+                    
+            try{
+                return DAO::insert($sql);
+            }
+            catch(\PDOException $e){
+                echo $e->getMessage();
+                die();
+            }
+        }
         
         public function delete($id){
             $sql = "DELETE FROM ".$this->tableName."

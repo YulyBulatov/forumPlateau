@@ -142,8 +142,26 @@ use Model\Managers\UtilisateurManager;
                         "nbre_messages" => $nbre_messages
                     ]
                     ];
+        }
+        
+        public function bannir($id){
+            $this->restrictTo("ROLE_ADMIN");
 
-            }    
+            $manager = new UtilisateurManager();
+            $utilisateur = $manager->findOneById($id);
+
+            if($utilisateur->getBanni() == 0){
+
+                $manager->update("banni", 1, $id);
+            }
+            elseif($utilisateur->getBanni() == 1){
+
+                $manager->update("banni", 0, $id);
+            }
+            
+
+            return self:: viewProfile($id);
+        }
 
 
         
