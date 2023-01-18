@@ -1,8 +1,10 @@
 <?php
 $messages = $result["data"]['messages'];
 $titre = $messages->current()->getTitreSujet();
-$id_sujet = $messages->current()->getIdSujet();
 
+if($messages->current()->getIdSujet()){
+    $id_sujet = $messages->current()->getIdSujet();
+}
     
 ?>
 

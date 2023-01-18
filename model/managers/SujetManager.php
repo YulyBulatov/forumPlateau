@@ -26,9 +26,19 @@
                 DAO::select($sql, ['id' => $id]),
                 $this->className
             );
-
-
         }
 
+        public function findOneByTitre($titre){
+
+            $sql = "SELECT *
+                    FROM ".$this->tableName." a
+                    WHERE a.titre = :titre
+                    ";
+
+            return $this->getOneOrNullResult(
+                DAO::select($sql, ['titre' => $titre], false), 
+                $this->className
+            );
+        }
 
     }
