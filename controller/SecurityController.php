@@ -128,20 +128,25 @@ use Model\Managers\UtilisateurManager;
 
         public function viewProfile($id){
 
-            $id_utilisateur = filter_input(INPUT_GET, $id, FILTER_SANITIZE_NUMBER_INT);
-
-            if($id_utilisateur){
-
                 $manager = new UtilisateurManager();
-                $profile = $manager->findOneById($id_utilisateur);
+                $profile = $manager->findOneById($id);
 
                 $manager = new MessageManager();
-                $nbre_messages = $manager->messagesDeUtilisateur($id_utilisateur);
+                $nbre_messages = $manager->messagesDeUtilisateur($id);
+
+                return [
+
+                    "view" => VIEW_DIR."security/viewProfile.php",
+                    "data" => [
+                        "profile" => $profile,
+                        "nbre_messages" => $nbre_messages
+                    ]
+                    ];
 
             }    
 
 
-        }
+        
 
 
     }

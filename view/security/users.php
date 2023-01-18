@@ -14,7 +14,7 @@ $users = $result["data"]["users"];
 foreach($users as $user){
     echo "<tr>";
     echo "<td>".$user->getEmail()."</td>",
-         "<td>".$user->getPseudonyme()."</td>",
+         "<td><a href=index.php?ctrl=security&action=viewProfile&id=".$user->getId().">".$user->getPseudonyme()."</a></td>",
          "<td>".$user->getInscription()."</td>",
          "<td>".$user->getRole()."</td>";
 

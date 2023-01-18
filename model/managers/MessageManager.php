@@ -37,9 +37,8 @@
             WHERE utilisateur_id = :id
             GROUP BY utilisateur_id";
 
-            return $this->getOneOrNullResult(
+            return $this->getSingleScalarResult(
             DAO::select($sql, ['id' => $id]),
-            $this->className
             );
 
         }

@@ -28,7 +28,7 @@ $nbre_messages = $result["data"]['nbre_messages'];
             echo "<td>OUI</td>";
          }
 ?>
-            <td><?=$nbre_messages?></td>
+            <td><?=$nbre_messages['nbre_messages']?></td>
         </tr>
 </table>
 
