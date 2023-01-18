@@ -183,4 +183,17 @@
 
         }
 
+        public function supprimerSujet($id){
+
+            $this->restrictTo("ROLE_ADMIN");
+
+            $manager = new SujetManager();
+            $sujet = $manager->findOneById($id);
+            $id_categorie = $sujet->getCategorie()->getId();
+            $manager->delete($id);
+
+            return self::sujetsDeCategorie($id_categorie);
+
+        }
+
     }

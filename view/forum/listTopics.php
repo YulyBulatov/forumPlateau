@@ -35,6 +35,13 @@ elseif($result["data"]['categorie']){
 
               <a href="index.php?ctrl=forum&action=cloturerSujet&id=<?=$topic->getId()?>">Clôturer ce sujet</a>
 
+              <?php
+            }
+            elseif(App\Session::isAdmin() && $topic->getOuvert() == 0){?>
+
+              <a href="index.php?ctrl=forum&action=supprimerSujet&id=<?=$topic->getId()?>">Supprimer ce sujet</a>
+
+
             <?php
             }
             elseif(App\Session::getUser()->getId()

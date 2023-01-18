@@ -1,11 +1,9 @@
 <?php
+if(isset($result["data"]['messages'])){
 $messages = $result["data"]['messages'];
 $titre = $messages->current()->getTitreSujet();
 $ouvert = $messages->current()->getSujet()->getOuvert();
-
-if($messages->current()->getIdSujet()){
-    $id_sujet = $messages->current()->getIdSujet();
-}
+$id_sujet = $messages->current()->getIdSujet();
     
 ?>
 
@@ -42,5 +40,5 @@ if( $ouvert == 1){
 
 </form>
 <?php
-}
+}}
 ?>
