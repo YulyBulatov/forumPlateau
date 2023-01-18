@@ -42,12 +42,26 @@
 
             $sujetManager = new SujetManager();
 
-            return [
-                "view" => VIEW_DIR."forum/listTopics.php",
-                "data" => [
-                    "sujets" => $sujetManager->sujetsDeCategorie($id)
-                ]
-                ];
+            if($sujetManager->sujetsDeCategorie($id)){
+
+                return [
+                    "view" => VIEW_DIR."forum/listTopics.php",
+                    "data" => [
+                        "sujets" => $sujetManager->sujetsDeCategorie($id)
+                    ]
+                    ];
+            }
+            else{
+
+                $categorieManager = new CategorieManager();
+
+                return [
+                    "view" => VIEW_DIR."forum/listTopics.php",
+                    "data" => [
+                        "categorie" => $categorieManager->findOneById($id)
+                    ]
+                    ];
+            }        
         }
 
         public function messagesDuSujet($id){

@@ -1,31 +1,31 @@
 <?php
-
-$topics = $result["data"]['sujets'];
-$categorie_id = $topics->current()->getCategorie()->getId();
-
+if(isset($result["data"]['sujets'])){
+  $topics = $result["data"]['sujets'];
+  $titre_categorie = $topics->current()->getCategorie();
+  $categorie_id = $topics->current()->getCategorie()->getId();
+}
+elseif($result["data"]['categorie']){
+  $categorie = $result["data"]['categorie'];
+  $categorie_id = $categorie->getId();
+  $titre_categorie = $categorie;
+}
     
 ?>
 
-<h1>liste topics</h1>
+<h1><?=$titre_categorie?></h1>
 
 <?php
-foreach($topics as $topic ){
+  if(isset($topics)){
+    foreach($topics as $topic ){
 
 
-    $id_sujet = $topic->getId();
+        $id_sujet = $topic->getId();
 
-    ?>
-    <p><a href="index.php?ctrl=forum&action=messagesDuSujet&id=<?=$id_sujet?>"><?=$topic->getTitre()?></a></p>
-    <?php
-}?>
+        ?>
+        <p><a href="index.php?ctrl=forum&action=messagesDuSujet&id=<?=$id_sujet?>"><?=$topic->getTitre()?></a></p>
+        <?php
+}}?>
 
-<script src="public/myScript.js"></script>
-
-<!-- A button to open the popup form -->
-<button class="open-button" onclick="openForm()">Créer un nouveau sujet</button>
-
-<!-- The form -->
-<div class="form-popup" id="myForm">
   <form action="index.php?ctrl=forum&action=addNouveauSujet" method="post" class="form-container">
     <h1>Nouveau sujet</h1>
 
@@ -40,9 +40,8 @@ foreach($topics as $topic ){
     <input type="hidden" name="categorie_id" value="<?=$categorie_id?>">
 
     <button type="submit" name="submit" class="btn">Créer</button>
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+
   </form>
-</div>
 
 
   

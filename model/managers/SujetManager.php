@@ -22,12 +22,23 @@
                     WHERE categorie_id = :id
                     ORDER BY creation DESC";
 
-            return $this->getMultipleResults(
+            if ($this->getMultipleResults(
                 DAO::select($sql, ['id' => $id]),
                 $this->className
-            );
-        }
+            )){
 
+                return $this->getMultipleResults(
+                DAO::select($sql, ['id' => $id]),
+                $this->className
+                );
+            }
+
+            else{
+
+                
+
+            }
+        }
         public function findOneByTitre($titre){
 
             $sql = "SELECT *
